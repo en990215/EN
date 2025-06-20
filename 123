@@ -1,0 +1,28 @@
+<Tabs value={activeSkill} onValueChange={setActiveSkill} className="mt-4">
+  <TabsList className="grid grid-cols-3 gap-1">
+    {skills.map((skill) => (
+      <TabsTrigger key={skill} value={skill}>
+        {skill}
+      </TabsTrigger>
+    ))}
+  </TabsList>
+
+  {skills.map((skill) => (
+    <TabsContent key={skill} value={skill} className="mt-4">
+      <p className="text-sm text-gray-300">
+        修煉《<span className="text-blue-400">{skill}</span>》中……<br />
+        心法效果：{getSkillDescription(skill)}
+      </p>
+    </TabsContent>
+  ))}
+</Tabs>
+function getSkillDescription(skill: string) {
+  const descriptions: Record<string, string> = {
+    幽玄功: "增加內力恢復速度，夜間修煉效率提升。",
+    金剛神功: "防禦提升30%，受到攻擊時有機率反彈傷害。",
+    極意玄功: "提升所有技能傷害並無視敵人20%防禦。",
+    山河卷: "召喚山河之力，群體控制與範圍爆發技能增強。",
+    冰心訣: "提升閃避率與暴擊，附帶冰凍效果。",
+  };
+  return descriptions[skill] || "神秘的上古心法，其效果尚未解明。";
+}
